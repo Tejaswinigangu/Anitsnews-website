@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Your Website - Home</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Add your custom styles here */
+
+        body {
+            font-family: Arial, sans-serif; /* Change font family to Arial */
+            background-color: rgba(0, 0, 0, 0.8); /* Light black background */
+            color: #fff; /* White text color */
+        }
+
+        .navbar {
+            background-color: #333; /* Dark header color */
+        }
+
+        .latest-news {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .latest-news h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: bold; /* Make the text bold */
+        }
+
+        .news-list {
+            flex: 0.5;
+        }
+
+        .news-item {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            max-width: 300px;
+        }
+
+        .news-item img {
+            max-width: 100px;
+            height: auto;
+            border-radius: 4px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .news-item h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            font-weight: bold; /* Make the text bold */
+        }
+
+        .news-content p {
+            display: none;
+        }
+
+        .side-content {
+            flex: 1;
+            display: flex;
+            justify-content: center; /* Align content horizontally to the center */
+            align-items: center; /* Align content vertically to the center */
+            flex-direction: column; /* Stack elements vertically */
+            max-width: 70%;
+        }
+
+        .side-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            height: auto;
+        }
+
+        .side-content p {
+            font-size: 14px;
+            color: #ccc; /* Light grey text color */
+            text-align: left;
+            font-weight: bold; /* Make the text bold */
+        }
+
+        .search {
+            margin-left: 10px;
+        }
+
+        /* Highlight active nav link */
+        .navbar-nav .nav-item.active .nav-link {
+            color: #fff;
+            
+            border-radius: 4px;
+        }
+
+        .navbar-nav .nav-item .nav-link {
+            color: #ccc; /* Grey color for nav links */
+        }
+    </style>
+</head>
+
+<body class="t1">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">News Channel</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/news">News</a>
+                </li>
+                
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action="/search" method="GET">
+                <input class="form-control mr-sm-2" type="text" name="query" placeholder="Search news..."
+                    aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="home">
+        <div class="latest-news">
+            <div class="news-list">
+                <h2>Latest News</h2>
+                <ul class="list-unstyled">
+                    <% newsList.forEach(news => { %>
+                    <li class="news-item">
+                        <!-- Link to the individual news article page -->
+                        <a href="/news/<%= news.id %>" class="text-decoration-none">
+                            <% if (news.imageUrl) { %>
+                            <img src="<%= news.imageUrl %>" alt="News Image" class="img-fluid">
+                            <% } %>
+                            <div class="news-content">
+                                <h3><%= news.title %></h3>
+                                <p><%= news.content %></p>
+                            </div>
+                        </a>
+                    </li>
+                    <% }); %>
+                </ul>
+            </div>
+            <div class="side-content">
+
+                <img src="https://www.anits.edu.in/images/banner4.jpg" alt="teju" class="img-fluid">
+
+                <p>Anil Neerukonda Institute of Technology and Sciences (ANITS) is a renowned engineering college located
+                    in Visakhapatnam, Andhra Pradesh, India. It was established in the year 2001 and is named after the
+                    famous industrialist and philanthropist, Late Sri Anil Neerukonda. ANITS is affiliated with Andhra
+                    University and is approved by the All India Council for Technical Education (AICTE), New Delhi.
+
+                    The college offers undergraduate and postgraduate programs in various disciplines of engineering,
+                    including Computer Science, Electronics and Communication, Mechanical, Civil, and Electrical
+                    Engineering. ANITS is known for its excellent academic standards, state-of-the-art infrastructure,
+                    and experienced faculty members. The college also emphasizes research and innovation, encouraging
+                    students to participate in various projects and competitions.
+
+                    ANITS has a vibrant campus life with numerous extracurricular activities, clubs, and events that
+                    help in the overall development of students. The college has a strong placement record, with many
+                    students securing placements in reputed companies every year. ANITS is considered one of the top
+                    engineering colleges in Andhra Pradesh and is a preferred choice for students seeking quality
+                    technical education.
+                </p>
+            </div>
+        </div>
+    </div> 
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

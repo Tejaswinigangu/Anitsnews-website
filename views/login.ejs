@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Your Website - Login</title>
+    <style>
+        /* Add custom styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav.nav3 {
+            background-color: #333;
+            padding: 10px;
+        }
+
+        nav.nav3 ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            text-align: center;
+        }
+
+        nav.nav3 ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav.nav3 ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        nav.nav3 ul li a:hover {
+            color: #ffc107;
+        }
+
+        section#login {
+            margin: 50px auto;
+            padding: 20px;
+            max-width: 400px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        section#login h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #ffc107;
+        }
+
+        button[type="submit"] {
+            background-color: #ffc107;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #ff9800;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        p a {
+            color: #ffc107;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        p a:hover {
+            color: #ff9800;
+        }
+    </style>
+</head>
+
+<body class="t3">
+
+    <!-- Navigation Bar -->
+    <nav class="nav3">
+        <ul>
+            <li><a href="/" class="navtext3">Home</a></li>
+            <li><a href="/news" class="navtext3">News</a></li>
+            <% if (user) { %>
+            <li><a href="/logout" class="navtext3">Logout</a></li>
+            <% } else { %>
+            <li><a href="/login" class="navtext3">Login</a></li>
+            <% } %>
+        </ul>
+    </nav>
+
+    <section id="login">
+        <% if (user) { %>
+        <h2>Welcome, <%= user %></h2>
+        <p>You are currently logged in. <a href="/logout">Logout</a></p>
+        <% } else { %>
+        <h2>Login</h2>
+        <hr>
+        <form action="/login" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+        <% } %>
+
+    </section>
+
+</body>
+
+</html>

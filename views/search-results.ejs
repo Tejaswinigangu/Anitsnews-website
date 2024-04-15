@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Search Results</title>
+    <style>
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 15s linear infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .nav1 ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav1 li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        .nav1 a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .side-box {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav1">
+        <ul>
+            <li><a href="/" class="navtext1">Home</a></li>
+            <li><a href="/news" class="navtext1">News</a></li>
+            <li><a href="/login" class="navtext1">Login</a></li>
+            <li>
+                <form action="/search" method="GET">
+                    <input type="text" name="query" placeholder="Search news...">
+                    <button type="submit">Search</button>
+                </form>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="marquee-container">
+        <div class="marquee-content">
+            <p>Daily News of ANITS: [Breaking news] Daily News of ANITS: [Breaking news] Daily News of ANITS: [Breaking news] Daily News of ANITS: [Breaking news] Daily News of ANITS: [Breaking news] Daily News of ANITS: [Breaking news] Daily News of ANITS: [Breaking news] Daily News of ANITS: [Breaking news] Daily News of ANITS: [Breaking news] Daily News of ANITS: [Breaking news] Daily News of ANITS: [Breaking news]</p>
+        </div>
+    </div>
+
+    <h2>Search Results for "<%= searchQuery %>"</h2>
+
+    <div class="search-results">
+        <% if (searchResults.length > 0) { %>
+            <% searchResults.forEach(news => { %>
+                <a href="/news/<%= news.id %>" class="news-link">
+                    <div class="news-item">
+                        <h3><%= news.title %></h3>
+                        <% if (news.imageUrl) { %>
+                            <img src="<%= news.imageUrl %>" alt="News Image">
+                        <% } %>
+                    </div>
+                </a>
+            <% }); %>
+        <% } else { %>
+            <p class="no-results">No results found.</p>
+        <% } %>
+    </div>
+
+    <div class="side-box">
+        <!-- Side content goes here -->
+        <h3>Additional Content</h3>
+        <p>This is some additional content displayed on the side.</p>
+    </div>
+</body>
+</html>
